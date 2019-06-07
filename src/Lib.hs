@@ -18,9 +18,21 @@ data User = User
   , userLastName  :: String
   } deriving (Eq, Show)
 
+users :: [User]
+users = [ User 1 "Isaac" "Newton"
+        , User 2 "Albert" "Einstein"
+        ]
+
 $(deriveJSON defaultOptions ''User)
 
 type API = "users" :> Get '[JSON] [User]
+         :<|> "users" :> Capture "id" Int :> Get '[JSON] User
+
+allUsers :: Handler [User]
+allUsers = return users
+
+getUser :: Int -> Handler User
+getUser id = return (users !! 0)
 
 startApp :: IO ()
 startApp = run 8080 app
@@ -32,9 +44,6 @@ api :: Proxy API
 api = Proxy
 
 server :: Server API
-server = return users
+server = allUsers
+    :<|> getUser
 
-users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
-        ]
