@@ -10,3 +10,5 @@
 
 # backup files
 *.un~
+
+.stack-work
