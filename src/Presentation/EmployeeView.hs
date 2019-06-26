@@ -23,5 +23,8 @@ type CRUD = "employees" :> Get '[JSON] [Employee]
 crud :: Proxy CRUD
 crud = Proxy
 
-allEmployees :: Handler [Employee]
-allEmployees = return employees
+allEmployees :: [Employee]
+allEmployees = employees
+
+allEmployeesHandler :: Handler [Employee]
+allEmployeesHandler = return allEmployees

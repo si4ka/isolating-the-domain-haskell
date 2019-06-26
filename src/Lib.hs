@@ -13,6 +13,7 @@ import Network.Wai.Handler.Warp
 import Servant
 import Domain.Employee
 import qualified Presentation.EmployeeView as EmployeeView
+import qualified Presentation.DetailView as DetailView
 
 data User = User
   { userId        :: Int
@@ -30,6 +31,7 @@ $(deriveJSON defaultOptions ''User)
 type API = "users" :> Get '[JSON] [User]
          :<|> "users" :> Capture "id" Int :> Get '[JSON] User
          :<|> EmployeeView.CRUD
+         :<|> DetailView.CRUD
 
 allUsers :: Handler [User]
 allUsers = return users
@@ -49,5 +51,5 @@ api = Proxy
 server :: Server API
 server = allUsers
     :<|> getUser
-    :<|> EmployeeView.allEmployees
-
+    :<|> EmployeeView.allEmployeesHandler
+    :<|> DetailView.detailHandler

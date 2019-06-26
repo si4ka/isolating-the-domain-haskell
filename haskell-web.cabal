@@ -17,8 +17,12 @@ library
   hs-source-dirs:      src
   exposed-modules:     Lib
                      , Presentation.EmployeeView
+                     , Presentation.DetailView
                      , Domain.Attendance
                      , Domain.Employee
+                     , Domain.Product
+                     , Domain.Quotation.Detail
+
   build-depends:       base >= 4.7 && < 5
                      , aeson
                      , servant-server
