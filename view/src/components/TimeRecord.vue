@@ -1,13 +1,17 @@
 <template>
   <div id="time-record" class="ui container">
-    <form id="form" class="ui large form" method="post">
-      <EmployeesCombobox></EmployeesCombobox>
+    <form id="form" class="ui large form" v-on:submit="submitRecord">
+      <EmployeesCombobox
+        v-model="record.employeeNumber"
+      >
+      </EmployeesCombobox>
       <WorkDateInput
         v-model="record.workDate"
         placeholder="勤務日"
         name="WorkDateInput"
         type="date"
       ></WorkDateInput>
+      <input type="submit" value="Submit record">
       <router-view></router-view>
     </form>
   </div>
@@ -32,6 +36,12 @@ export default {
         daytimeBreakTime: "",
         midnightBreakTime: ""
       }
+    }
+  },
+  methods: {
+    submitRecord: function (e) {
+      e.preventDefault()
+      console.log(this)
     }
   }
 }
