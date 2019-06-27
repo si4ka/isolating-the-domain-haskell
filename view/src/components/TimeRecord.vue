@@ -2,6 +2,12 @@
   <div id="time-record" class="ui container">
     <form id="form" class="ui large form" method="post">
       <EmployeesCombobox></EmployeesCombobox>
+      <WorkDateInput
+        v-model="record.workDate"
+        placeholder="勤務日"
+        name="WorkDateInput"
+        type="date"
+      ></WorkDateInput>
       <router-view></router-view>
     </form>
   </div>
@@ -9,10 +15,11 @@
 
 <script>
 import EmployeesCombobox from "./EmployeesCombobox"
+import WorkDateInput from "./WorkDateInput"
 
 export default {
   name: "TimeRecord",
-  components: {EmployeesCombobox},
+  components: {WorkDateInput, EmployeesCombobox},
   data () {
     return {
       record: {
