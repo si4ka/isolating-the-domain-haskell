@@ -3,7 +3,7 @@
     <label>氏名</label>
     <div class="eight wide field">
       <select class="ui search dropdown">
-        <option v-for="(employee, index) in employees" :key=index>
+        <option v-for="employee in employees" :key="employee.number">
           {{ employee.name }}
         </option>
       </select>
